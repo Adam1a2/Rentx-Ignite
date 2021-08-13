@@ -1,7 +1,7 @@
 import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import {
-    ICreateSpecificationDTO,
-    ISpecificationRepository,
+  ICreateSpecificationDTO,
+  ISpecificationRepository,
 } from "../ISpecificationRepository";
 
 class SpecificationsRepositoryInMemory implements ISpecificationRepository {
