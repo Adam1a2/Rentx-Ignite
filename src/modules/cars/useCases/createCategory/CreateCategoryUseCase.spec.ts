@@ -7,18 +7,17 @@ let createCategoryUseCase: CreateCategoryUseCase;
 let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
 
 
-describe("Create Category", () =>{
+describe("Create Category", () => {
 
-    beforeEach(() =>{
+    beforeEach(() => {
         categoriesRepositoryInMemory = new CategoriesRepositoryInMemory()
         createCategoryUseCase = new CreateCategoryUseCase(categoriesRepositoryInMemory);
-        
     })
 
     // teste para create
 
     it("should be able to create a new category", async () => {
-        const category ={
+        const category = {
             name: "Category test",
             description: " Category description test",
         }
@@ -26,9 +25,7 @@ describe("Create Category", () =>{
         await createCategoryUseCase.execute({
             name: category.name,
             description: category.description
-
         })
-
         const categoryCreated = await categoriesRepositoryInMemory.findByName(category.name);
 
         expect(categoryCreated).toHaveProperty("id")
@@ -37,8 +34,7 @@ describe("Create Category", () =>{
     //teste category name alread exists
 
     it("should not be able to create a new category with a name exists", async () => {
-        expect(async() => {
-            const category ={
+        const category = {
             name: "Category test",
             description: " Category description test",
         }
@@ -46,14 +42,14 @@ describe("Create Category", () =>{
         await createCategoryUseCase.execute({
             name: category.name,
             description: category.description
-
         })
 
-        
-        }).rejects.toBeInstanceOf(AppError);
+        await expect(
+            createCategoryUseCase.execute({
+                name: category.name,
+                description: category.description
+            })).rejects.toBeInstanceOf(AppError);
     })
-
-
 
 })
 
