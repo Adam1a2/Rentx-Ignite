@@ -5,7 +5,7 @@ import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
 @injectable()
 class ListCategoryUseCase {
   constructor(
-    @inject("CategoriesRepository")
+    @inject("CategoryRepository")
     private categoriesRepository: ICategoriesRepository
   ) {}
 
