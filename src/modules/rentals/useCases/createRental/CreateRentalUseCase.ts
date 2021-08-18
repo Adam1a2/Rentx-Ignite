@@ -35,14 +35,14 @@ class CreateRentalUseCase {
     expected_return_date,
   }: IRequest): Promise<Rental> {
     const minimumHour = 24;
-    //Não deve ser possǘel cadastrar um novo alguel caja já exista um aberto para o mesmo carro
+    //Não deve ser possǘel cadastrar um novo aluguel caja já exista um aberto para o mesmo carro
 
     const carAvailable = await this.rentalsRepository.findOpenRentalByCar(
       car_id
     );
 
     if (carAvailable) {
-      throw new AppError("Car is unvailable");
+      throw new AppError("Car is unvailable!");
     }
 
     //Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário

@@ -10,7 +10,6 @@ const createRentalController = new CreateRentalController();
 const devolutionRentalController = new DevolutionRentalController();
 const listRentalsByUserController = new ListRentalsByUserController();
 
-
 rentalRoutes.post("/", ensureAuthenticated, createRentalController.handle);
 
 rentalRoutes.post(
@@ -19,6 +18,10 @@ rentalRoutes.post(
   devolutionRentalController.handle
 );
 
-rentalRoutes.get("/user", ensureAuthenticated, listRentalsByUserController.handle)
+rentalRoutes.get(
+  "/user",
+  ensureAuthenticated,
+  listRentalsByUserController.handle
+);
 
 export { rentalRoutes };

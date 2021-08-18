@@ -4,18 +4,16 @@ import { inject, injectable } from "tsyringe";
 
 @injectable()
 class ListRentalsByUserUseCase {
-    constructor(
-       @inject("RentalsRepository")
-       private  rentalsRepository: IRentalsRepository
-    ){}
+  constructor(
+    @inject("RentalsRepository")
+    private rentalsRepository: IRentalsRepository
+  ) {}
 
+  async execute(user_id: string): Promise<Rental[]> {
+    const rentalsByUser = await this.rentalsRepository.findByUser(user_id);
 
-   async execute (user_id: string) : Promise<Rental[]> {
-
-        const rentalsByUser = await this.rentalsRepository.findByUser(user_id);
-
-        return rentalsByUser;
-   } 
+    return rentalsByUser;
+  }
 }
 
-export { ListRentalsByUserUseCase }
+export { ListRentalsByUserUseCase };
