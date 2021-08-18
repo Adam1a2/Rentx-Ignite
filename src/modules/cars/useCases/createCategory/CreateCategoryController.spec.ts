@@ -43,12 +43,12 @@ describe("Create Category Controller", () => {
       .send({
         name: "Category Supertest",
         description: "Category Supertest",
-      }).set({
-        Authorization: `Bearer ${token}`,
       })
-      
-      expect(response.status).toBe(201)
-      
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
+
+    expect(response.status).toBe(201);
   });
 
   it("should not be able to create a new category with name exists", async () => {
@@ -64,12 +64,11 @@ describe("Create Category Controller", () => {
       .send({
         name: "Category Supertest",
         description: "Category Supertest",
-      }).set({
-        Authorization: `Bearer ${token}`,
       })
-      
-      expect(response.status).toBe(400)
-      
-  });
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
+    expect(response.status).toBe(400);
+  });
 });
